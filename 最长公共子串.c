@@ -21,12 +21,10 @@ int main(){
 	//method 1
 	int dp[len1][len2];
 	for(int i=0;i<len1;i++){
-		if(i>0 && dp[i-1][0]==1)dp[i][0]=1;
 		if(str1[i]==str2[0])	dp[i][0]=1;
 		else					dp[i][0]=0;
 	}
 	for(int j=0;j<len2;j++){
-		if(j>0 && dp[0][j-1]==1)dp[0][j]=1;
 		if(str2[j]==str1[0])	dp[0][j]=1;
 		else					dp[0][j]=0;
 	}

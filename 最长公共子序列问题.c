@@ -57,36 +57,26 @@ int main(){
 		cout<<endl;
 	}
 	cout<<"***"<<endl;
-	int count=0;
-	for(int i=len1;i>=0;i--){
-		for(int j=len2-count;j>=i;j--){
-			if(i!=0 && dp[i][j]==dp[i-1][j-1]+1 && str1[i]==str2[j]){
-				cout<<str2[j];
-				count=len2-j;
-				break;
-			}else if(i==0){
-				while(dp[i][j]==1) j--;
-				cout<<str2[j+1];
-				break;
+	int lr=dp[len1-1][len2-1];
+	int tmp1=len1-1;
+	int tmp2=len2-1;
+	for(int i=tmp1;i>0;i--){
+		for(int j=tmp2;j>0;j--){
+			while(dp[i][j-1]==lr){
+				j--;
 			}
+			while(dp[i-1][j]==lr) i--;
+			cout<<str1[i];
+			lr--;
+			tmp1=i;
+			tmp2=j;
+			break;
 		}
 	}
-	cout<<endl<<"*****"<<endl;
-	//不要从正面找，不能找出，从后面开始找比较容易，所以下面是不对的
-	int c2=0;
-	for(int i=0;i<len1;i++){
-		for(int j=c2;j<len2;j++){
-			if(i!=0 && dp[i][j]==dp[i-1][j-1]+1 && str1[i]==str2[j]){
-				cout<<str2[j];
-				c2=j;
-				break;
-			}else if(i==0){
-				while(dp[i][j]==0) j++;
-				cout<<str2[j];
-				c2=j;
-				break;
-			}
-		}
+	if(lr>0){
+		int tt=0;
+		while(dp[tt][0]==0) tt++;
+		cout<<dp[tt][0];
 	}
 	return 0;
 }

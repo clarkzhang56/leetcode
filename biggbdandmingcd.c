@@ -33,3 +33,18 @@ int main(){
 	cout<<big_gcd<<" "<<min_gbd<<endl;
 	return 0;
 }
+
+#include <iostream>
+using namespace std;
+int getNum(int m,int n){
+	if(m<n)	return getNum(n,m);
+	if(n==0)	return m;
+	return getNum(n,m%n);
+}
+int main(){
+	int m,n;
+	while(cin>>m>>n){
+		cout<<getNum(m,n)<<endl;
+	}
+	return 0;
+}
